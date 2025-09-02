@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.school.sptech;
+
+<span class="s0">public class </span>Biblioteca {
+
+    <span class="s0">private </span>String nome;
+    <span class="s0">private </span>Double multaDiaria;
+    <span class="s0">private </span>Integer qtdLivros;
+    <span class="s0">private </span>Boolean ativa;
+
+    <span class="s0">public </span>Biblioteca(String nome, Double multaDiaria) {
+        <span class="s0">this</span>.nome = nome;
+        <span class="s0">this</span>.multaDiaria = multaDiaria;
+        <span class="s0">this</span>.qtdLivros = <span class="s2">0</span>;
+        <span class="s0">this</span>.ativa = <span class="s0">true</span>;
+    }
+
+
+    <span class="s0">public void </span>registrarLivro(Integer quantidade) {
+        <span class="s0">if </span>(ativa &amp;&amp; quantidade != <span class="s0">null </span>&amp;&amp; quantidade &gt; <span class="s2">0</span>) {
+            qtdLivros += quantidade;
+        }
+    }
+
+    <span class="s0">public </span>Integer emprestar(Integer quantidade) {
+        <span class="s0">if </span>(ativa &amp;&amp; quantidade != <span class="s0">null </span>&amp;&amp; quantidade &gt; <span class="s2">0 </span>&amp;&amp; quantidade &lt;= qtdLivros) {
+            qtdLivros -= quantidade;
+            <span class="s0">return </span>quantidade;
+        }
+        <span class="s0">return null</span>;
+    }
+
+    <span class="s0">public </span>Integer devolver(Integer quantidade) {
+        <span class="s0">if </span>(ativa &amp;&amp; quantidade != <span class="s0">null </span>&amp;&amp; quantidade &gt; <span class="s2">0</span>) {
+            qtdLivros += quantidade;
+            <span class="s0">return </span>quantidade;
+        }
+        <span class="s0">return null</span>;
+    }
+
+    <span class="s0">public </span>Integer desativar() {
+        <span class="s0">if </span>(!ativa) {
+            <span class="s0">return null</span>;
+        }
+        Integer qtdAnterior = qtdLivros;
+        ativa = <span class="s0">false</span>;
+        qtdLivros = <span class="s2">0</span>;
+        <span class="s0">return </span>qtdAnterior;
+    }
+
+    <span class="s0">public void </span>transferir(Biblioteca destino, Integer quantidade) {
+        <span class="s0">if </span>(<span class="s0">this</span>.ativa &amp;&amp; destino != <span class="s0">null </span>&amp;&amp; destino.ativa &amp;&amp;
+                quantidade != <span class="s0">null </span>&amp;&amp; quantidade &gt; <span class="s2">0 </span>&amp;&amp; quantidade &lt;= <span class="s0">this</span>.qtdLivros) {
+            <span class="s0">this</span>.qtdLivros -= quantidade;
+            destino.qtdLivros += quantidade;
+        }
+    }
+
+    <span class="s0">public </span>Boolean reajustarMulta(Double percentual) {
+        <span class="s0">if </span>(percentual != <span class="s0">null </span>&amp;&amp; percentual &gt; <span class="s2">0</span>) {
+            multaDiaria += multaDiaria * percentual;
+            <span class="s0">return true</span>;
+        }
+        <span class="s0">return false</span>;
+    }
+
+    <span class="s0">public </span>String getNome() {
+        <span class="s0">return </span>nome;
+    }
+
+    <span class="s0">public </span>Double getMultaDiaria() {
+        <span class="s0">return </span>multaDiaria;
+    }
+
+    <span class="s0">public </span>Integer getQtdLivros() {
+        <span class="s0">return </span>qtdLivros;
+    }
+
+    <span class="s0">public </span>Boolean getAtiva() {
+        <span class="s0">return </span>ativa;
+    }
+
+
+    <span class="s0">public void </span>setNome(String nome) {
+        <span class="s0">this</span>.nome = nome;
+    }
+}
+
+</pre>
+</body>
+</html>
